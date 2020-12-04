@@ -1,0 +1,7 @@
+
+<% @anime_widget.each do |anime| %>
+	<%= form_with model: anime, class: "nifty_form" do |f| %>
+	  <%=anime.title%>
+	  <%= f.submit "Create" %>
+	<% end %>
+<%end%>

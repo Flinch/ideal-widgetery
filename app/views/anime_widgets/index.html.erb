@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Anime Widgets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Image</th>
+      <th>Rating</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @anime_widgets.each do |anime_widget| %>
+      <tr>
+        <td><%= anime_widget.title %></td>
+        <td><%= anime_widget.description %></td>
+        <td><%= anime_widget.image %></td>
+        <td><%= anime_widget.rating %></td>
+        <td><%= link_to 'Show', anime_widget %></td>
+        <td><%= link_to 'Edit', edit_anime_widget_path(anime_widget) %></td>
+        <td><%= link_to 'Destroy', anime_widget, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Anime Widget', new_anime_widget_path %>

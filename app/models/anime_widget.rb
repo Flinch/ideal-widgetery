@@ -1,0 +1,2 @@
+class AnimeWidget < ApplicationRecord
+end
