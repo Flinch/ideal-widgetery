@@ -1,0 +1,18 @@
+<% @anime_widget.each do |anime_widget| %>
+	<%= form_with(model: anime_widget, local: true) do |form| %>
+	  <% if anime_widget.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(anime_widget.errors.count, "error") %> prohibited this anime_widget from being saved:</h2>
+
+	      <ul>
+	        <% anime_widget.errors.full_messages.each do |message| %>
+	          <li><%= message %></li>
+	        <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+	  <%=anime_widget.title%>
+	  <%= form.hidden_field :title, value: anime_widget.title %>
+	  <%= form.submit "Create" %>
+	<%end%>
+<% end %>

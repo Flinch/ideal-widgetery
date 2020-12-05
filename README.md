@@ -21,3 +21,24 @@
 	</tbody>
 </table>
  -->
+
+
+
+ <%= form_for @search_param do |form| %>
+	
+	<div class="field">
+	    <%= form.label :title %>
+	    <%= form.text_field :title %>
+	  </div>
+
+	  <%= submit_tag 'Call Action' %>
+<% end %>
+
+results page
+
+<% @anime_widget.each do |anime| %>
+	<%= form_with model: anime, local: true do |f| %>
+		  <%=anime.title%>
+		  <%= f.submit "Create" %>
+		<% end %>
+<%end%>

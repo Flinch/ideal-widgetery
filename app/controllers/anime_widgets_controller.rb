@@ -28,14 +28,14 @@ class AnimeWidgetsController < ApplicationController
      a_name.result
   end
 
-
-  def results
-    i=0
-    num=3
-    @anime_widget = [AnimeWidget.new, AnimeWidget.new, AnimeWidget.new]
-    # qry = Jikan::Query.new 
-    # a_name = qry.search("naruto", :anime)
-    res = get_anime_list
+  def search
+     i=0
+     num=3
+     @parameter = params[:search]
+     qry = Jikan::Query.new 
+     a_name = qry.search(@parameter, :anime)
+     res = a_name.result
+     @anime_widget = [AnimeWidget.new, AnimeWidget.new, AnimeWidget.new]
      while (i<num)
          @anime_widget[i].title = res[i].title
          @anime_widget[i].description = res[i].synopsis
@@ -43,7 +43,9 @@ class AnimeWidgetsController < ApplicationController
          @anime_widget[i].rating = res[i].rating
          i+=1
        end
+  end
 
+  def results
   end
 
 
@@ -53,13 +55,13 @@ class AnimeWidgetsController < ApplicationController
     @anime_widget = AnimeWidget.new(anime_widget_params)
 
     respond_to do |format|
-      if @anime_widget.save
-        format.html { redirect_to @anime_widget, notice: 'Anime widget was successfully created.' }
-        format.json { render :show, status: :created, location: @anime_widget }
-      else
-        format.html { render :new }
-        format.json { render json: @anime_widget.errors, status: :unprocessable_entity }
-      end
+        if @anime_widget.save
+          format.html { redirect_to @anime_widget, notice: 'Anime widget was successfully created.' }
+          format.json { render :show, status: :created, location: @anime_widget }
+        else
+          format.html { render :new }
+          format.json { render json: @anime_widget.errors, status: :unprocessable_entity }
+        end
     end
   end
 
