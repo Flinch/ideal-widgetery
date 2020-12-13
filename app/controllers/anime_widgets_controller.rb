@@ -21,6 +21,9 @@ class AnimeWidgetsController < ApplicationController
   def edit
   end
 
+  def start
+  end
+
   def get_anime_list
      @anime_widget = AnimeWidget.new(anime_widget_params)
      qry = Jikan::Query.new 
